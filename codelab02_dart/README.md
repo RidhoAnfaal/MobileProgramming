@@ -22,4 +22,4 @@ Because dart is the language of flutter, while flutter provides the tools for bu
 ![question4](img/q4.png)
 - Null safety feature makes us explicitly declare if a variable can be null (using ?) or if it must always have a value. This prevents unexpected errors from trying to use a variable that has no value.
 
-- The late keyword is used for non nullable variables that we can't initialize right away. It's a promise that we will assign them a value before you try to read from them, preventing errors that would occur if we tried to use an uninitialized non nullable variable.
+- The late keyword is used for non nullable variables that we can't initialize right away. It's a promise that we will assign them a value before we try to read from them, preventing errors that would occur if we tried to use an uninitialized non nullable variable.
