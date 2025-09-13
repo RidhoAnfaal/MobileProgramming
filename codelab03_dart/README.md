@@ -91,3 +91,13 @@
 
 
 ## 2. Create a program that displays prime numbers from 0 to 201 using Dart. When a prime number is found, display your full name and student ID number.
+
+![assignment](img/assignment.png)
+
+Code flow :
+1. Loops through all numbers from 2 to 201
+2. isPrime = true; assume it's prime.
+3. Check if it can be divided evenly by any smaller number (other than 1).
+4. If it can be divided then it's not prime.
+5. If it can't be devided then it's prime
+6. Whenever the number is prime it will print the number along with my name and student id (nim).
