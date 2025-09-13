@@ -25,8 +25,8 @@
 - What happened? If an error occurs, please correct it but continue using if else. There is an error :
     
     ![p1-step3.1](img/step3.1.png)
-
-- It's because the test variable is a string as the condition, dart doesn't know how to interpret the string "true" as a boolean true automatically. It sees a string and expects a true/false value. This mismatch causes the error. Here's the correct one :
+    
+    It's because the test variable is a string as the condition, dart doesn't know how to interpret the string "true" as a boolean true automatically. It sees a string and expects a true/false value. This mismatch causes the error. Here's the correct one :
     
     ![p1-step3.2](img/step3.2.png)
 
@@ -57,6 +57,37 @@
 ### Step 1
 - Type or copy the following program code into the function main()
 
+    ![p3-s1.0](img/p3-1.0.png)
+
+### Step 2
+- Please try executing (Run) the code in step 1 above. What happened? Explain! Then fix it if an error occurs.
+
+    ![p3-s2.0](img/p3-2.0.png)
+
+    This error is caused by the absence of a previous variable index declaration, followed by inconsistency in variable names (index & Index). Here's the correct one :
+
+    ![p3-s2.0](img/p3-2.1.png)
+
+### Step 3
+- Add the following program code in the for-loop, then try to execute (Run) your code.
+
+    ![p3-s3.0](img/p3-s3.0.png)
+
+    Here's the correct one :
+
+    ![p3-s3.0](img/p3-s3.1.png)
+
+    The code flow :
+    1. index starts at 10
+    2. 10 < 27 = true
+    3. index == 21 = false
+    4. index > 1 || index < 7 = true, because 10 > 1
+    5. continue; is executed, the print is skipped.
+    6. index = 11
+    7. The pattern repeats for index values from 10 to 20, for all values, index > 1 is ture so continue is executed and nothing is printed.
+    8. When index = 21, index < 27 is true, index == 21 is true, therefore break; is executed.
+    
+    The print(index); statement will never be reached in this specific code because all values of index from 10 to 20 will trigger the continue statement, and the loop will break when index reaches 21 before print(index) can execute.
 
 
 ## 2. Create a program that displays prime numbers from 0 to 201 using Dart. When a prime number is found, display your full name and student ID number.
