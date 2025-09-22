@@ -36,9 +36,13 @@
 ### Step 3
 - Add the following program code, then try to execute (Run) your code.
 
-    ![p2-s3.0](img/p2-3.0.png)
+    ![p2-s3.0](img/p2-s3.0.png)
 
-    That code first uses a while loop to print numbers from 0-32, then it uses a do-while loop to print numbers from 33-76,
+    The ouput looked weird because, when we declared var names3 = {}; the dart infers it as a map not a set.
+
+- What happened? If an error occurs, please correct it but keep the three variables. Add your name and student ID to both Set variables using two different functions: .add()and .addAll(). Remove the Map variable; we'll try that in the next lab.
+
+    ![p2-s3.0](img/p2-s3.1.png)
 
 ### Practical 3 : Applying "for" and "break-continue" loops
 ### Step 1
