@@ -44,42 +44,32 @@
 
     ![p2-s3.0](img/p2-s3.1.png)
 
-### Practical 3 : Applying "for" and "break-continue" loops
+    .add() function is to adds one element to a set, while .addAll() adds multiple elements at once.
+
+### Practical 3 : Maps Data Type Experiment
 ### Step 1
 - Type or copy the following program code into the function main()
 
-    ![p3-s1.0](img/p3-1.0.png)
+    ![p3-s1.0](img/p3-s1.png)
 
 ### Step 2
 - Please try executing (Run) the code in step 1 above. What happened? Explain! Then fix it if an error occurs.
 
-    ![p3-s2.0](img/p3-2.0.png)
+    ![p3-s2.0](img/p3-s2.png)
 
-    This error is caused by the absence of a previous variable index declaration, followed by inconsistency in variable names (index & Index). Here's the correct one :
-
-    ![p3-s2.0](img/p3-2.1.png)
+    var gifts and var nobleGases are maps in dart, a map stores key value pairs, key are like labels and value are the data connected to those labels. gifts map keys are strings ('first', 'second', 'fifth') value are mixed types ('partridge' 'turtledoves', 1). nobleGases map keys are integer integers (2, 10, 18) values are also mixed: strings ('helium', 'neon') and an integer (2).
 
 ### Step 3
-- Add the following program code in the for-loop, then try to execute (Run) your code.
+- Add the following program code, then try to execute (Run) your code.
 
     ![p3-s3.0](img/p3-s3.0.png)
 
-    Here's the correct one :
+    Those problems happens because the program created mhs1 and mhs2 maps but we never stored anything in them or printed them, dart warns that they are unused.
+
+- Add your name and student ID elements to each of the variables above ( gifts, nobleGases, mhs1, and mhs2). Document the results and create a report! 
 
     ![p3-s3.0](img/p3-s3.1.png)
-
-    The code flow :
-    1. index starts at 10
-    2. 10 < 27 = true
-    3. index == 21 = false
-    4. index > 1 || index < 7 = true, because 10 > 1
-    5. continue; is executed, the print is skipped.
-    6. index = 11
-    7. The pattern repeats for index values from 10 to 20, for all values, index > 1 is ture so continue is executed and nothing is printed.
-    8. When index = 21, index < 27 is true, index == 21 is true, therefore break; is executed.
-    
-    The print(index); statement will never be reached in this specific code because all values of index from 10 to 20 will trigger the continue statement, and the loop will break when index reaches 21 before print(index) can execute.
-
+    ![p3-s3.1](img/p3-s3.2.png)
 
 ## 2. Create a program that displays prime numbers from 0 to 201 using Dart. When a prime number is found, display your full name and student ID number.
 
