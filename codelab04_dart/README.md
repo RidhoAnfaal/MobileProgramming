@@ -71,14 +71,84 @@
     ![p3-s3.0](img/p3-s3.1.png)
     ![p3-s3.1](img/p3-s3.2.png)
 
-## 2. Create a program that displays prime numbers from 0 to 201 using Dart. When a prime number is found, display your full name and student ID number.
+### Practical 4 : List Data Type Experiment: Spread and Control-flow Operators
+### Step 1
+- Type or copy the following program code into the function main().
 
-![assignment](img/assignment.png)
+    ![p3-s1](img/p4-s1.png)
 
-Code flow :
-1. Loops through all numbers from 2 to 201
-2. isPrime = true; assume it's prime.
-3. Check if it can be divided evenly by any smaller number (other than 1).
-4. If it can be divided then it's not prime.
-5. If it can't be devided then it's prime
-6. Whenever the number is prime it will print the number along with my name and student id (nim).
+### Step 2
+- Please try running the code in step 1. What happens? Explain! Then, correct any errors.
+
+    ![p3-s2.0](img/p4-s2.png)
+
+    The error happens because the program trying to print list1 but since list1 was never defined, dart throws an undefined name error. It can be solve like this :
+
+    ![p3-s2.1](img/p4-s2.1.png)
+
+### Step 3
+- Add the following program code, then try executing (Run) your code.
+
+    ![p3-s3](img/p4-s3.0.png)
+
+    The problems happens because when we first created list1 dart inferred its type as List<int>, that means it can only contain integers not null, so when we tried to insert null dart complained. Here's the correct one :
+
+    ![p3-s3.1](img/p4-s3.1.png)
+
+    var list1 = [1, 2, 3]; meaning the list can only store integers, null is not allowed because int is non nullable by default. Therefore I used var list1 = <int?>, it means list1 now can be either int or null.
+
+- Add variable list containing NIM and use Spread Operators. Document results and create reports!
+
+    ![p3-s3.2](img/p4-s3.2.png)
+
+### Step 4
+- Add the following code to the program, then try executing (Run) the following code.
+
+    ![p3-s4](img/p4-s4.png)
+
+    The error happens because variable promoActive is used but we never declared it.
+
+- What happened? If error occurs, please correct. Show result if variable promoActive when truegiven false.
+
+    promoActive = true
+
+    ![p3-s4](img/p4-s4.1.png)
+
+    promoActive = false
+
+    ![p3-s4](img/p4-s4.2.png)
+
+### Step 5
+- Add the following code to the program, then try executing (Run) the following code.
+
+    ![p3-s5](img/p4-s5.png)
+
+    The error happens because variable login is used but we never declared it.
+
+- What happened? If error occurs, please correct. Show results if the variable loginhas other conditions.
+
+    login = manager : 
+
+    ![p3-s5.1](img/p4-s5.1.png)
+
+    login = admin :
+
+    ![p3-s5.2](img/p4-s5.2.png)
+
+### Step 6
+- Add the following code to the program, then try executing (Run) the following code.
+
+    ![p3-s6](img/p4-s6.png)
+
+### Practical 5 : Experiment Type Data Records
+### Step 1
+- Click or type the code in the following functions main().
+    
+
+
+
+
+### Step 2
+### Step 3
+### Step 4
+### Step 5
