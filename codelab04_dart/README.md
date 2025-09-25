@@ -190,18 +190,43 @@
     ![p5-s5](img/p5-s5.1.png)
 
 ## 2. Explain what is meant by Functions in the language Dart!
-
+- A function is a block of code that performs a specific task and can be reused.
 
 ## 3. Explain the types of parameters of functions with example syntax!
+- Required positional parameters : a parameters must be passed in order 
+    
+    ![as-n3](img/as-n3.png)
 
+- Optional Positional Parameters (wrapped in []) : can be omitted default value is null unless specified 
+    
+    ![as-n3](img/as-n3.1.png)
+
+- Named Parameters (wrapped in {}) : called by name, can be required or optional
+    
+    ![as-n3](img/as-n3.2.png)
 
 ## 4. To clarify the meaning of Functions as first-class objects, give an example!
+- Functions are first-class objects when they can be treated like any other variable. This means we can assign them to a variable, pass them as arguments to other functions, return them as a value from another function, and store them in data structures like list or maps.
 
+    ![as-n4](img/as-n4.png)
 
 ## 5. What are Anonymous Functions? Explain and give examples!
+- Anonymous functions are functions without a name, they are defined inline and are often used for short, simple tasks, such as for a callback or an iteration.
 
+- Instead of a formal function declaration like void func() { ... } an anonymous function can be define with just its parameter list and body, the syntax is typically (parameters) => expression for a single-line function or (parameters) { statements; } for a multi line one.
+
+    ![as-n5](img/as-n5.png)
 
 ## 6. Explain the difference between Lexical scope and Lexical closures! Give examples!
+- Lexical scope is how a programming language determines the visibility of variables. A variable's scope is defined by its position in the source code. A function can access variables declared in its "parent" or "surrounding" scope.
 
+    ![as-n6](img/as-n6.png)
+
+- Lexical closure is a more advanced concept that arises from lexical scoping. It is a function that "remembers" its surrounding lexical scope even when it is executed outside of that scope. The function "closes over" the variables from its parent scope.
+
+    ![as-n6](img/as-n6.1.png)
 
 ## 7. Explain with example how to make return multiple value of Functions!
+- Dart functions can return multiple values using record, list, and maps. Example using recors :
+
+    ![as-n7](img/as-n7.png)
