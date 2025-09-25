@@ -143,12 +143,65 @@
 ### Practical 5 : Experiment Type Data Records
 ### Step 1
 - Click or type the code in the following functions main().
-    
 
-
-
+    ![p5-s1](img/p5-s1.png)
 
 ### Step 2
+- Then try executing (Run) the code in step 1 above. What happened? Clear out! Then wait if error occurs.
+
+    ![p5-s2](img/p5-s2.png)
+
+    The error was caused by print(record) not being written correctly. It should be print(record);
+    Here's the correct one :
+
+    ![p5-s1](img/p5-s2.1.png)
+
 ### Step 3
+- Add the following code to the program outside the scope void main(), then try executing (Run) the next code.
+
+    ![p5-s3](img/p5-s3.png)
+
+- What happened? If error occurs, please correct. Use the function tukar()inside main()to clearly see the process of changing value fields in Records.
+
+    var record = ('first', a: 2, b: true, 'last') is a record that can mix positional fields ('first', 'last') and named fields (a: 2, b: true), when printed it shows positional fields first. Function tukar takes a record (int, int) and swaps the values using destructuring.
+
+    Using function tukar() :
+    
+    ![p5-s3](img/p5-s3.1.png)
+
 ### Step 4
+- Add the following code program in the scope void main(), then try executing (Run) this code.
+
+    ![p5-s3](img/p5-s4.png)
+
+- What happened? If error occurs, please correct. Initialization fields name and NIM are given to the variable record mahasiswaabove. Document results and create reports!
+    
+    The error happens because mahasiswa was declared without initialization and since it's non nullable it doesn't allow printing it before assigning a value. Here's the correct one with initialization :
+
+    ![p5-s3](img/p5-s4.1.png)
+
 ### Step 5
+- Add the following code program in the scope void main(), then try executing (Run) this code.
+
+    ![p5-s5](img/p5-s5.png)
+
+- What happened? If error occurs, please correct. Change one of the same records with name and NIM and then document the results and create reports!
+
+    ![p5-s5](img/p5-s5.1.png)
+
+## 2. Explain what is meant by Functions in the language Dart!
+
+
+## 3. Explain the types of parameters of functions with example syntax!
+
+
+## 4. To clarify the meaning of Functions as first-class objects, give an example!
+
+
+## 5. What are Anonymous Functions? Explain and give examples!
+
+
+## 6. Explain the difference between Lexical scope and Lexical closures! Give examples!
+
+
+## 7. Explain with example how to make return multiple value of Functions!
