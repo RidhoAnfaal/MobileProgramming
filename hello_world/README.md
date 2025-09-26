@@ -1,16 +1,18 @@
-# hello_world
+# Practicum Assignment
 
-A new Flutter project.
+## 1. Complete Practicals 1 to 5, then document and push them to your repository in the form of screenshots of each work result along with an explanation in the file README.md!
 
-## Getting Started
+### Practicum 1 : Creating a New Flutter Project
+![p1](img/p1.png)
 
-This project is a starting point for a Flutter application.
+### Practicum 2 : Connecting an Android Device or Emulator
+From android studio :
+![p2](img/p2.0.png)
 
-A few resources to get you started if this is your first Flutter project:
+From mobile phone :
+![p2](img/p2.1.jpg)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Practicum 3 : Creating a GitHub Repository and Practical Report
+![p3](img/p3.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Practicum 4 : Implementing Basic Widgets
