@@ -16,3 +16,8 @@ From mobile phone :
 ![p3](img/p3.png)
 
 ### Practicum 4 : Implementing Basic Widgets
+![p4](img/p4.png)
+
+![p4](img/p4.1.png.png)
+
+### Practicum 5 : Implementing Material Design Widgets and iOS Cupertino
