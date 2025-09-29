@@ -1,16 +1,8 @@
-# codelab05_app
+# Practicum Assignment
+## Complete Codelabs: Your first Flutter app , then create a lab report and push it to your GitHub repository!
 
-A new Flutter project.
+![assignment](img/as-n4.png)
 
-## Getting Started
+![assignment](img/as-n4.1.png)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- This application is a Flutter implementation centered on efficient state management using Provider to manage current word pairs, history, and favorites lists. The core of this application's design is adaptive responsiveness, where it uses LayoutBuilder to switch between BottomNavigationBar on small screens and NavigationRail on large screens, with page transitions smoothed by AnimatedSwitcher. The main page displays the word pair generator in an attractive BigCard and includes a HistoryListView with a fading effect that utilizes AnimatedList for gradual history updates, while the favorites page uses an efficient GridView to display and allow for organized deletion of favorite items.
