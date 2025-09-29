@@ -33,10 +33,10 @@ From android studio :
 - This practice demonstrates cross-platform design: first, the use of Material Design widgets (Scaffold, FloatingActionButton, AlertDialog, TextField) to create a complete Android/generic experience, from basic layouts to user interactions such as counters and text input. Second, the demonstration of Cupertino widgets (CupertinoButton, CupertinoActivityIndicator) shows how Flutter can deliver iOS-specific design elements. 
 
 ## 2. Complete Lab 2, and you'll be required to run the hello_world app on a physical device (Android/iOS) to gain experience connecting to a physical device. Capture the results of the app on the device, then create a lab report in a README.md.
-From android studio :
+- From android studio :
 ![p2](img/p2.0.png)
 
-From mobile phone :
+- From mobile phone :
 ![p2](img/p2.1.jpg)
 
 ## 3. In practical 5, starting from Steps 3 to 6, create a separate widget file in the folder basic_widgets, then in the file main.dart, simply import the widget according to each step!
