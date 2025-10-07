@@ -27,3 +27,4 @@
 - This practicum I learned to implement an image section in a Flutter layout. Prepared image assets by creating an images folder and declaring the image path in the pubspec.yaml file. The image was added using the Image.asset() widget, with parameters like width, height, and fit: BoxFit.cover to ensure a distortion-free, appealing layout. Lastly all components were placed inside a ListView widget to allow for a scrollable interface, ensuring accessibility on smaller screens. This activity provided practical experience in managing assets, displaying images, and structuring responsive layouts in Flutter.
 
 ## 2. Please implement it in a new project " basic_layout_flutter " by accessing this source: https://docs.flutter.dev/codelabs/layout-basics
+- Flutter project link : https://github.com/RidhoAnfaal/MobileProgramming/tree/master/basic_layout_flutter
