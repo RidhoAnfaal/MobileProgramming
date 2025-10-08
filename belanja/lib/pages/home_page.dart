@@ -20,7 +20,6 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Shopping List'),
       ),
-      // Langkah 6: Membuat ListView.builder
       body: Container(
         margin: const EdgeInsets.all(8),
         child: ListView.builder(
@@ -30,9 +29,8 @@ class HomePage extends StatelessWidget {
 
             return Card(
               margin: const EdgeInsets.only(top: 8),
-              child: InkWell( // Pindahkan InkWell ke sini, langsung membungkus Card content
+              child: InkWell( 
                 onTap: () {
-                  // Aksi saat item diklik: Navigasi dan kirim data!
                   Navigator.pushNamed(
                     context,
                     '/item',
@@ -40,18 +38,15 @@ class HomePage extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  // Tambahkan padding di sini agar area klik nyaman
                   padding: const EdgeInsets.all(12),
                   child: Row(
                     children: [
-                      // Item Name (Expanded agar mengambil sisa ruang kiri)
                       Expanded(
                         child: Text(
                           item.name,
                           style: const TextStyle(fontSize: 16),
                         ),
                       ),
-                      // Item Price (Expanded agar sejajar rapi di kanan)
                       Expanded(
                         child: Text(
                           item.price.toString(),

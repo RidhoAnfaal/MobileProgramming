@@ -6,10 +6,8 @@ class ItemPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 1. Ambil data (objek Item) yang dikirimkan melalui arguments
     final item = ModalRoute.of(context)?.settings.arguments as Item?;
 
-    // Jika item null, tampilkan pesan error atau kembali
     if (item == null) {
       return Scaffold(
         appBar: AppBar(title: const Text('Error')),
@@ -17,7 +15,6 @@ class ItemPage extends StatelessWidget {
       );
     }
 
-    // 2. Tampilan halaman detail
     return Scaffold(
       appBar: AppBar(
         title: const Text('Shopping List'),
