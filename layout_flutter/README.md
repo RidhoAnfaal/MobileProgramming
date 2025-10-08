@@ -14,13 +14,13 @@
 
 - This practicum implemented a button row in Flutter by creating a reusable widget structure to display multiple horizontally arranged buttons with icons and labels. A private method, \_buildButtonColumn(), constructs a column widget with an icon and a text widget, promoting code reuse. Then designed the buttonSection widget using a row to align three button columns evenly. The styling employed Flutter’s primary color for a consistent look.
 
-### Practicum 3 :
+### Practicum 3 : Implementation of text section
 
 ![p3](images/p3.png)
 
 - This practicum implement a text section in Flutter using a widget variable called textSection, which utilizes a padding widget for spacing. The text widget within displays a paragraph about the "Wisata Gunung Bromo" tourist destination, with the softWrap: true property ensuring text readability on various screen sizes.
 
-### Practicum 4 :
+### Practicum 4 : Implementation of image section
 
 ![p4](images/p4.png)
 
@@ -30,5 +30,8 @@
 
 - Flutter project link : https://github.com/RidhoAnfaal/MobileProgramming/tree/master/basic_layout_flutter
 
-# PRACTICUM ASSIGNMENT 2
+### Practicum 5 : Building Navigation in Flutter
+- Flutter project link for this practicum : 
 
+# PRACTICUM ASSIGNMENT 2
+- Link for assignment 2 : 
