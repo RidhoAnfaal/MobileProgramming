@@ -1,16 +1,36 @@
-# basic_layout_flutter
+# Layouts in Flutter
 
-A new Flutter project.
+## Layout a widget
 
-## Getting Started
+- Standard apps
+  ![p1](images/p1.png)
 
-This project is a starting point for a Flutter application.
+- Material apps
+  ![p1](images/p1.1.png)
 
-A few resources to get you started if this is your first Flutter project:
+- Cupertino apps
+  ![p1](images/p1.2.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Lay out multiple widgets vertically and horizontally
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![p2](images/p2.png)
+
+## Common layout widgets
+
+- Container
+  ![p3](images/p3.png)
+
+- GridView
+  ![p3](images/p3.1.png)
+
+- ListView
+  ![p3](images/p3.2.png)
+
+- Stack
+  ![p3](images/p3.3.png)
+
+- Card
+  ![p3](images/p3.4.png)
+
+- ListTile
+  ![p3](images/p3.5.png)
