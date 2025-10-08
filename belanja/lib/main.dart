@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'pages/home_page.dart';
 import 'pages/item_page.dart';
+import 'models/item.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,16 +13,30 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    // Initialize GoRouter
+    final GoRouter router = GoRouter(
+      routes: [
+        GoRoute(
+          path: '/',
+          name: 'home',
+          builder: (context, state) => const HomePage(),
+        ),
+        GoRoute(
+          path: '/item',
+          name: 'item',
+          builder: (context, state) {
+            final item = state.extra as Item;
+            return ItemPage(item: item);
+          },
+        ),
+      ],
+    );
+
+    return MaterialApp.router(
       title: 'Belanja App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomePage(),
-        '/item': (context) => const ItemPage(),
-      },
+      theme: ThemeData(primarySwatch: Colors.green),
+      routerConfig: router,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

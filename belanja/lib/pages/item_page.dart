@@ -2,22 +2,16 @@ import 'package:flutter/material.dart';
 import '../models/item.dart';
 
 class ItemPage extends StatelessWidget {
-  const ItemPage({super.key});
+  final Item item;
+
+  const ItemPage({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
-    final item = ModalRoute.of(context)?.settings.arguments as Item?;
-
-    if (item == null) {
-      return Scaffold(
-        appBar: AppBar(title: const Text('Error')),
-        body: const Center(child: Text('Item tidak ditemukan!')),
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shopping List'),
+        title: const Text('Item Details'),
+        backgroundColor: Colors.green,
       ),
       body: Center(
         child: Padding(
@@ -25,14 +19,45 @@ class ItemPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Item: ${item.name}',
-                style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              Hero(
+                tag: 'product-image-${item.name}',
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    item.photo,
+                    height: 200,
+                    width: 200,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 24),
               Text(
-                'Price: ${item.price.toString()}',
-                style: const TextStyle(fontSize: 24, color: Colors.blueAccent),
+                item.name,
+                style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'Rp ${item.price}',
+                style: const TextStyle(
+                  fontSize: 22,
+                  color: Colors.redAccent,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'Stock: ${item.stock}',
+                style: const TextStyle(fontSize: 18),
+              ),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.star, color: Colors.amber),
+                  Text(item.rating.toString(),
+                      style: const TextStyle(fontSize: 18)),
+                ],
               ),
             ],
           ),
