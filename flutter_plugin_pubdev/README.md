@@ -22,8 +22,52 @@
 ##
 
 ## 4. In step 6 there are two widgets added, explain their functions and differences!
-- 
+- The main difference lies in the engine used to render text:
+    1. RedTextWidget (with AutoSizeText): Adaptive. It changes the font size so that the text content can adjust to the width of the container, avoiding overflow.
+    2. Standard Text: Non-adaptive It retains the original font size. Since a width of only 100 pixels is insufficient, the text will overflow and be truncated. This experiment demonstrates the superiority of AutoSizeText in scenarios with strict space constraints.
 
 ##
 
 ## 5. Explain the meaning of each parameter in the plugin based on the links in thisauto_size_text documentation !
+- Main function : AutoSizeText behaves like Flutter’s normal Text widget, but automatically resizes the font so the text fits inside its available space (width and height).
+
+1. Key : Controls how one widget replaces another widget in the tree. Same behavior as Flutter’s Text widget key. Used internally by Flutter for widget identification during rebuilds.
+
+2. textKey : Sets the key for the resulting internal Text widget. Optional, rarely used. Useful if you need to directly identify or test the internal Text instance created by AutoSizeText.
+
+3. style : Defines how the text looks (font, size, weight, color, etc.). Exactly like Text.style in Flutter.
+
+4. minFontSize : The smallest possible font size the text can shrink to. Default: 12. If the text still doesn’t fit even at this size, it’s handled based on the overflow parameter.
+
+5. maxFontSize : The largest possible font size allowed for resizing. Useful if you’re inheriting a text style but want to prevent it from becoming too large.
+
+6. stepGranularity : The step size (in points) that the font size decreases each iteration when fitting text. Smaller values = smoother resizing but slightly slower. Default is usually 1.0.
+
+7. presetFontSizes : Allows only specific font sizes to be used. Overrides minFontSize, maxFontSize, and stepGranularity. Must be in descending order.
+
+8. group : Synchronizes font sizes of multiple AutoSizeText widgets. All texts in the same AutoSizeGroup resize to the same final font size (the smallest size among them). Helps keep UI consistent.
+
+9. textAlign : Aligns the text horizontally inside its box. Same as in Text. Example: TextAlign.center, TextAlign.right.
+
+10. textDirection : Defines the direction of the text. Important for languages like Arabic or Hebrew. Example: TextDirection.ltr or TextDirection.rtl.
+
+11. locale : Used to pick a proper font if a character looks different depending on locale.
+
+12. softWrap : Whether the text should break at soft line breaks. Same as in Text. Usually true (the text will wrap automatically to fit lines).
+
+13.  wrapWords : Whether words that don’t fit in one line should be wrapped. Default: true. If false, words too long for a single line might overflow.
+
+14. overflow : Determines what happens when text still doesn’t fit. Common values:
+    - TextOverflow.clip → cuts off the text
+    - TextOverflow.ellipsis → adds “…” at the end
+    - TextOverflow.fade → fades out the text
+
+15. overflowReplacement : Widget displayed instead of the text when it overflows and can’t fit within its bounds. Useful for showing fallback UI.
+
+16. textScaleFactor : Multiplier for the font size (e.g., accessibility or user scaling). Affects all font sizes, including minFontSize, maxFontSize, and presetFontSizes.
+
+17. maxLines : Maximum number of lines the text can occupy. If not set, AutoSizeText resizes text freely based on width/height.
+
+18. semanticsLabel : Provides an alternative text label for accessibility (screen readers).
+
+19. Special Constructor : Allows to using Rich Text (multiple styles or clickable spans). Works like Text.rich.
