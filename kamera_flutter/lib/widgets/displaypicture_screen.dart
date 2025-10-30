@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 
-// A widget that displays the picture taken by the user.
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
 

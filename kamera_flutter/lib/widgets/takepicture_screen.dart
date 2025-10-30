@@ -5,7 +5,6 @@ import 'displaypicture_screen.dart';
 
 class TakePictureScreen extends StatefulWidget {
   final CameraDescription camera;
-
   const TakePictureScreen({super.key, required this.camera});
 
   @override
@@ -36,8 +35,7 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Take a picture - 2341720222')), // Ganti NIM Anda
-      // Wait until the controller is initialized before showing the camera preview
+      appBar: AppBar(title: const Text('Take a picture - 2341720222')),
       body: FutureBuilder<void>(
         future: _initializeControllerFuture,
         builder: (context, snapshot) {
@@ -53,15 +51,10 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           try {
-            // Ensure camera is initialized
             await _initializeControllerFuture;
-
-            // Take a picture
             final image = await _controller.takePicture();
 
             if (!context.mounted) return;
-
-            // Navigate to display screen
             await Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => DisplayPictureScreen(imagePath: image.path),
