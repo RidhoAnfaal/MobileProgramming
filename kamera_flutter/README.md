@@ -12,11 +12,13 @@ TI-3I_Ridho Anfa'al_2341720222
 
 ### Practicum 2 : Creating a photo filter carousel
 ![practicum](img/prac2.gif)
-- In this practicum 2 I've created photo filter feature using a carousel interface, several widgets such as filterSelector, FilterItem, and FilterCarousel were develop to allow color filters to be applied to an image. The widget state and color blending  change the photo's appearance dynamically.
+- In this practicum 2 I've created photo filter feature using a carousel interface, several widgets such as filterSelector, FilterItem, and FilterCarousel were develop to allow color filters to be applied to an image. The widget state and color blending  change the photo's appearance dynamically. Link repository for practicum 2 : https://github.com/RidhoAnfaal/MobileProgramming/tree/master/photo_filter_carousel
 
 ##
 
 ## 2. Combine the results of lab 1 with the results of lab 2 so that after taking the photo, you can create a carousel filter!
+![practicum](img/prac12.gif)
+- In this experiment the process of capturing and displayed and image on the screen using device's camera used code from practicum 1. Then filter carousel code from practicum 2 was added, after capturing a photo users could view and apply different visual filters.
 
 ##
 
@@ -26,6 +28,6 @@ void main() async function is used to allowing the app to perform time consuming
 ##
 
 ## 4. Explain the function of annotation @immutable and @override?
-- @immutable annotation marks a class so that its properties can't change after the object is created. This helps prevent unexpected behavior since any data change requires creating a new widget instead of modifying the existing one.
+@immutable annotation marks a class so that its properties can't change after the object is created. This helps prevent unexpected behavior since any data change requires creating a new widget instead of modifying the existing one.
 
-- @override is used when a subclass replaces or modifies a method from its parent clas. It helps make the code clearer and prevents mistakes by ensuring that the overridden method actually exists in the superclass.
+@override is used when a subclass replaces or modifies a method from its parent clas. It helps make the code clearer and prevents mistakes by ensuring that the overridden method actually exists in the superclass.

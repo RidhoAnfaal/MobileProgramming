@@ -3,18 +3,18 @@ import 'package:camera/camera.dart';
 import 'widgets/takepicture_screen.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
+  WidgetsFlutterBinding.ensureInitialized(); 
   final cameras = await availableCameras();
   final firstCamera = cameras.first;
 
   runApp(
     MaterialApp(
+      title: 'Kamera Filter Gabungan',
       theme: ThemeData.dark(),
-      debugShowCheckedModeBanner: false,
       home: TakePictureScreen(
         camera: firstCamera,
       ),
+      debugShowCheckedModeBanner: false,
     ),
   );
 }
