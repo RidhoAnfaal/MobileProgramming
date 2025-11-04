@@ -39,4 +39,27 @@ In short : step 11 prepare controller at begining and step 13 clean controller w
 
 ##
 
-## Pacticum Assignment 2 : 
+## Pacticum Assignment 2 : InheritedWidget
+
+### 1. Complete the lab steps, then document the final results with a GIF and explanation in the file README.md! If you find any errors or issues, please correct them according to the application's purpose.
+![p1](img/p2.gif)
+
+##
+
+### 2. Explain what is meant InheritedWidget by step 1! Why is it used InheritedNotifier?
+InheritedWidget is a widget that allows data/state to be shared down the widget tree so the child widgets can access that data without needing to pass parameters manually. The InheritedWidget in this step is the PlanProvider class, this widget is used to place the Plan model data inside the widget tree so other widgets under it can access the same data.
+
+##
+
+### 3. Explain the purpose of the method in step 3 of the practicum! Why is this done?
+The methods completedCount and completenessMessage are used to calculate how many tasks are completed and show the progress message. This is done to keep logic inside the model, not inside the UI. By doing this, the code becomes cleaner, easier to manage, and the UI only needs to display the result from the model.
+
+##
+
+### 4. Capture the results of Step 9 as a GIF, then explain what you have created!
+![p1](img/p2.gif)
+
+The tasks data is stored using InheritedNotifier, not inside the widget state anymore. The progress 0 out of 1 tasks is displayed at the bottom. When the add button is pressed, a new task can be added and the UI updates automatically because the data is handled using ValueNotifier + InheritedNotifier.
+
+##
+
