@@ -1,11 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'task.dart';
 
+@immutable
 class Plan {
-  final String title;
+  final String name;
   final List<Task> tasks;
 
   const Plan({
-    this.title = '',
+    this.name = '',
     this.tasks = const [],
   });
 }

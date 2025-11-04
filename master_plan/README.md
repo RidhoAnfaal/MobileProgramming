@@ -1,16 +1,42 @@
-# master_plan
+# CODELAB 10
 
-A new Flutter project.
+Ridho Anfa'al_2341720222
 
-## Getting Started
+## Pacticum Assignment 1 : Basic State with Model-View
 
-This project is a starting point for a Flutter application.
+### 1. Complete the lab steps, then document the final results with a GIF and explanation in the file README.md! If you find any errors or issues, please fix them.
+![p1](img/p1.gif)
 
-A few resources to get you started if this is your first Flutter project:
+##
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 2. Explain the purpose of step 4 in the practicum! Why is this done?
+This step is used to make a data_layer.dart that only contains export statements, this makes importing easier. Instead of importing task.dart and plan.dart separately we only need to import one file data_layer.dart.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+##
+
+### 3. Why is the plan variable needed in step 6 of the lab? Why is it a constant?
+Plan variable is needed to store the main data/state of all tasks that will appear on the screen. Since the tasks can change this data must be inside state so that UI can update when using setState()
+
+##
+
+### 4. Capture the results of Step 9 as a GIF, then explain what you have created!
+![p1](img/p1.1.gif)
+
+This step creates a listTile for each task, each task will have : 
+ - a checkbox to mark whteher the task is complete or not
+ - a textformfield to type/edit the task description
+
+When user type or click checkbox flutter updates the plan list using setState() and the UI changes instanly.
+
+##
+
+### 5. What is the use of the methods in Steps 11 and 13 in the lifecycle state ?
+- initState() : runs when screen first created and to initialize scrollController and add listener for auto hide keyboard when scrolling.
+
+- dispose() : runs when screen is closed/removed and to destroy scrollController to avoid memory leaks.
+
+In short : step 11 prepare controller at begining and step 13 clean controller when done.
+
+##
+
+## Pacticum Assignment 2 : 
