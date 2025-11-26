@@ -15,3 +15,8 @@ Ridho Anfa'al_2341720222
 ## Lab 2
 ### Question 4
 ![p2-s4](img/p2-s4.png)
+
+## Lab 3
+### Question 5
+![p3-s5](img/p3-s5.png)
+This code improves safety by minimizing runtime errors from JSON key typos, catching such errors as compile errors instead of runtime crashes. It enhances maintainability through centralized updates, allowing changes to key names in a single line of declaration, ensuring all references to the constant are updated consistently, thus reducing time and risk of errors during future refactoring.
