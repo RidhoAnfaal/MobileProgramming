@@ -1,15 +1,45 @@
 class Pizza {
-  late final int id;
-  late final String pizzaName;
-  late final String description;
-  late final double price;
-  late final String imageUrl;
+  final int id;
+  final String pizzaName;
+  final String description;
+  final double price;
+  final String imageUrl;
 
-  Pizza.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    pizzaName = json['pizzaName'];
-    description = json['description'];
-    price = json['price'];
-    imageUrl = json['imageUrl'];
+  Pizza({
+    required this.id,
+    required this.pizzaName,
+    required this.description,
+    required this.price,
+    required this.imageUrl,
+  });
+
+  factory Pizza.fromJson(Map<String, dynamic> json) {
+    final idValue = json['id'];
+    int id = int.tryParse(idValue?.toString() ?? '') ?? 0; 
+
+    String pizzaName = json['pizzaName']?.toString() ?? '';
+    String description = json['description']?.toString() ?? '';
+    String imageUrl = json['imageUrl']?.toString() ?? '';
+
+    final priceValue = json['price'];
+    double price = double.tryParse(priceValue?.toString() ?? '') ?? 0.0;
+    
+    return Pizza(
+      id: id,
+      pizzaName: pizzaName,
+      description: description,
+      price: price,
+      imageUrl: imageUrl,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'pizzaName': pizzaName,
+      'description': description,
+      'price': price,
+      'imageUrl': imageUrl,
+    };
   }
 }

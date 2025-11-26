@@ -39,6 +39,10 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  String convertToJSON(List<Pizza> pizzas) {
+      return jsonEncode(pizzas.map((pizza) => pizza.toJson()).toList());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,6 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
       Pizza myPizza = Pizza.fromJson(pizza);
       tempPizzas.add(myPizza);
     }
+
+    String json = convertToJSON(tempPizzas);
+    print(json);
     
     return tempPizzas; 
   }

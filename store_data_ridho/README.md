@@ -1,16 +1,13 @@
-# store_data_ridho
+# Codelab 13
 
-A new Flutter project.
+Ridho Anfa'al_2341720222
 
-## Getting Started
+## Lab 1
+### Question 1
+![p1-s1](img/p1-s1.png)
+### Question 2
+![p1-s2](img/p1-s2.png)
+### Question 3
+![p1-s3](img/p1-s3.png)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Lab 2
