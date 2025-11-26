@@ -17,7 +17,10 @@ class Pizza {
     final idValue = json['id'];
     int id = int.tryParse(idValue?.toString() ?? '') ?? 0; 
 
-    String pizzaName = json['pizzaName']?.toString() ?? '';
+    String pizzaName = (json['pizzaName'] != null) 
+        ? json['pizzaName'].toString() 
+        : 'No name'; 
+
     String description = json['description']?.toString() ?? '';
     String imageUrl = json['imageUrl']?.toString() ?? '';
 

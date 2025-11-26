@@ -9,5 +9,9 @@ Ridho Anfa'al_2341720222
 ![p1-s2](img/p1-s2.png)
 ### Question 3
 ![p1-s3](img/p1-s3.png)
+![p1-s3](img/p1-s3.1.png)
+
 
 ## Lab 2
+### Question 4
+![p2-s4](img/p2-s4.png)

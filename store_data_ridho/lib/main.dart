@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   String convertToJSON(List<Pizza> pizzas) {
-      return jsonEncode(pizzas.map((pizza) => pizza.toJson()).toList());
+    return jsonEncode(pizzas.map((pizza) => pizza.toJson()).toList());
   }
 
   @override
@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return ListTile(
                   title: Text(myPizzas[index].pizzaName),
                   subtitle: Text(myPizzas[index].description),
-                  trailing: Text('\€${myPizzas[index].price.toString()}'),
+                  trailing: Text('€${myPizzas[index].price.toString()}'), 
                 );
               },
             ),
@@ -63,7 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<List<Pizza>> readJsonFile() async {
-    String myString = await DefaultAssetBundle.of(context).loadString('assets/pizzalist.json');
+    String myString = 
+        await DefaultAssetBundle.of(context).loadString('assets/pizzalist.json');
     List pizzaMapList = jsonDecode(myString);
     List<Pizza> tempPizzas = [];
     
@@ -73,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     String json = convertToJSON(tempPizzas);
+    print('JSON Result (Serialization):');
     print(json);
     
     return tempPizzas; 
