@@ -26,6 +26,7 @@ This code improves safety by minimizing runtime errors from JSON key typos, catc
 
 ## Lab 5
 ### Question 7
+![p5-s7](img/p5-s7.png)
 
 ## Lab 6
 
