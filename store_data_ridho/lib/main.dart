@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart'; 
 import 'package:path_provider/path_provider.dart'; 
 import 'dart:io'; 
 import 'package:store_data_ridho/model/pizza.dart'; 
+import 'package:flutter_secure_storage/flutter_secure_storage.dart'; 
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter JSON DEMO Ridho',
+      title: 'Flutter JSON Ridho',
       theme: ThemeData(primarySwatch: Colors.green),
       home: const MyHomePage(),
     );
@@ -35,34 +36,88 @@ class _MyHomePageState extends State<MyHomePage> {
   String pizzaString = ''; 
   String documentsPath = ''; 
   String tempPath = ''; 
-
   late File myFile; 
   String fileText = ''; 
+
+  final pwdController = TextEditingController(); 
+  String myPass = ''; 
+
+  final storage = const FlutterSecureStorage(); 
+  final myKey = 'myPass'; 
 
   @override
   void initState() {
     super.initState();
-    
     _loadAllData();
   }
-
+  
   Future<void> _loadAllData() async {
     readJsonFile().then((value) {
-      setState(() {
-        myPizzas = value;
-      });
+      setState(() { myPizzas = value; });
     });
 
     await readAndWritePreference(); 
-    
+
     await getPaths(); 
 
     myFile = File('$documentsPath/praktikum6.txt'); 
     await writeFile(); 
   }
 
+  Future<void> writeToSecureStorage() async {
+    await storage.write(key: myKey, value: pwdController.text);
+    pwdController.clear();
+    setState(() {
+      myPass = 'Value saved securely!';
+    });
+  }
+
+  Future<void> readFromSecureStorage() async {
+    String? secret = await storage.read(key: myKey);
+    
+    setState(() {
+      myPass = secret ?? 'No value found';
+    });
+  }
+
+
+  Future<List<Pizza>> readJsonFile() async {
+      String myString = await DefaultAssetBundle.of(context).loadString('assets/pizzalist.json');
+      List pizzaMapList = jsonDecode(myString);
+      List<Pizza> tempPizzas = [];
+      for (var pizza in pizzaMapList) {
+          Pizza myPizza = Pizza.fromJson(pizza); 
+          tempPizzas.add(myPizza);
+      }
+      pizzaString = jsonEncode(tempPizzas.map((pizza) => pizza.toJson()).toList());
+      return tempPizzas;
+  }
+
+  Future<void> readAndWritePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance(); 
+    appCounter = prefs.getInt('appCounter') ?? 0; 
+    appCounter++; 
+    await prefs.setInt('appCounter', appCounter); 
+    setState(() { appCounter = appCounter; }); 
+  }
+
+  Future<void> deletePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear(); 
+    setState(() { appCounter = 0; }); 
+  }
+
+  Future<void> getPaths() async {
+    final docDir = await getApplicationDocumentsDirectory(); 
+    final tempDir = await getTemporaryDirectory(); 
+    setState(() {
+      documentsPath = docDir.path; 
+      tempPath = tempDir.path; 
+    });
+  }
+  
   Future<bool> writeFile() async {
-    String content = "Ridho Anfa'al-2341720222";
+    String content = "Ridho Anfa'al-2341720222"; 
     try {
       await myFile.writeAsString(content); 
       return true;
@@ -85,104 +140,72 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Future<List<Pizza>> readJsonFile() async {
-    String myString = 
-        await DefaultAssetBundle.of(context).loadString('assets/pizzalist.json');
-    List pizzaMapList = jsonDecode(myString);
-    List<Pizza> tempPizzas = [];
-    
-    for (var pizza in pizzaMapList) {
-      Pizza myPizza = Pizza.fromJson(pizza);
-      tempPizzas.add(myPizza);
-    }
-    
-    pizzaString = convertToJSON(tempPizzas);
-    return tempPizzas; 
-  }
-
-  String convertToJSON(List<Pizza> pizzas) {
-    return jsonEncode(pizzas.map((pizza) => pizza.toJson()).toList()); 
-  }
-
-  Future<void> readAndWritePreference() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    appCounter = prefs.getInt('appCounter') ?? 0;
-    appCounter++; 
-    await prefs.setInt('appCounter', appCounter); 
-
-    setState(() {
-      appCounter = appCounter;
-    });
-  }
-
-  Future<void> deletePreference() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.clear(); 
-    setState(() {
-      appCounter = 0; 
-    });
-  }
-
-  Future<void> getPaths() async {
-    final docDir = await getApplicationDocumentsDirectory(); 
-    final tempDir = await getTemporaryDirectory(); 
-    
-    setState(() {
-      documentsPath = docDir.path; 
-      tempPath = tempDir.path; 
-    });
-  }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Path & File Access Ridho')),
+      appBar: AppBar(title: const Text('Ridho')),
       
-      body: Center(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('File System Paths:', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text('Doc path: $documentsPath'), 
-                  Text('Temp path: $tempPath'), 
-                ],
+            const Text('Path Provider', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            const SizedBox(height: 10),
+            TextField( 
+              controller: pwdController,
+              decoration: const InputDecoration(
+                labelText: 'Enter sensitive data',
+                border: OutlineInputBorder(),
               ),
             ),
             
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  child: const Text('Save Value'),
+                  onPressed: writeToSecureStorage, 
+                ),
+                ElevatedButton(
+                  child: const Text('Read Value'), 
+                  onPressed: readFromSecureStorage,
+                ),
+              ],
+            ),
+            
+            const SizedBox(height: 10),
+            Text('Saved Data: $myPass', style: const TextStyle(fontWeight: FontWeight.bold)), 
+            
+            const Divider(height: 30),
+
+            const Text('File System', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text('Doc path: $documentsPath'), 
+            Text('Temp path: $tempPath'), 
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: readFile, 
               child: const Text('Read File'), 
             ),
-            Text(fileText), 
+            Text('File Content: $fileText'), 
+            
+            const Divider(height: 30),
 
+            const Text('JSON', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             Text('You have opened the app $appCounter times.'), 
-
-            myPizzas.isEmpty
-                ? const CircularProgressIndicator()
-                : Expanded(
-                    child: ListView.builder(
-                      itemCount: myPizzas.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(myPizzas[index].pizzaName),
-                          subtitle: Text(myPizzas[index].description),
-                          trailing: Text('€${myPizzas[index].price.toString()}'),
-                        );
-                      },
-                    ),
-                  ),
-
             ElevatedButton(
               onPressed: deletePreference,
-              child: const Text('Reset counter'),
+              child: const Text('Reset counter'), 
             ),
+            
+            const SizedBox(height: 20),
+            ...myPizzas.map((pizza) => ListTile(
+              title: Text(pizza.pizzaName),
+              subtitle: Text(pizza.description),
+              trailing: Text('€${pizza.price.toString()}'),
+            )).toList(),
           ],
         ),
       ),
