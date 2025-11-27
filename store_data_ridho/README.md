@@ -23,3 +23,10 @@ This code improves safety by minimizing runtime errors from JSON key typos, catc
 ## Lab 4
 ### Question 6
 ![p4-s6](img/p4-s6.png)
+
+## Lab 5
+### Question 7
+
+## Lab 6
+
+## Lab 7

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart'; 
+import 'package:path_provider/path_provider.dart'; 
 import 'package:store_data_ridho/model/pizza.dart'; 
 
 void main() {
@@ -32,37 +33,64 @@ class _MyHomePageState extends State<MyHomePage> {
   int appCounter = 0; 
   String pizzaString = ''; 
 
+  String documentsPath = ''; 
+  String tempPath = ''; 
+
   @override
   void initState() {
     super.initState();
     
+    _loadAllData();
+  }
+
+  Future<void> _loadAllData() async {
     readJsonFile().then((value) {
       setState(() {
         myPizzas = value;
       });
     });
 
-    readAndWritePreference(); 
+    await readAndWritePreference(); 
+    
+    await getPaths(); 
+  }
+
+  Future<List<Pizza>> readJsonFile() async {
+    String myString = 
+        await DefaultAssetBundle.of(context).loadString('assets/pizzalist.json');
+    List pizzaMapList = jsonDecode(myString);
+    List<Pizza> tempPizzas = [];
+    
+    for (var pizza in pizzaMapList) {
+      Pizza myPizza = Pizza.fromJson(pizza);
+      tempPizzas.add(myPizza);
+    }
+    
+    pizzaString = convertToJSON(tempPizzas);
+    print('JSON Result (Serialization):');
+    print(pizzaString);
+    
+    return tempPizzas; 
   }
 
   String convertToJSON(List<Pizza> pizzas) {
     return jsonEncode(pizzas.map((pizza) => pizza.toJson()).toList()); 
   }
 
-  Future<void> readAndWritePreference() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  Future<void> readAndWritePreference() async { 
+    SharedPreferences prefs = await SharedPreferences.getInstance(); 
     
-    appCounter = prefs.getInt('appCounter') ?? 0;
+    appCounter = prefs.getInt('appCounter') ?? 0; 
     appCounter++; 
     
     await prefs.setInt('appCounter', appCounter); 
 
     setState(() {
-      appCounter = appCounter;
+      appCounter = appCounter; 
     });
   }
 
-  Future<void> deletePreference() async { //
+  Future<void> deletePreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear(); 
     
@@ -71,15 +99,38 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Future<void> getPaths() async { 
+    final docDir = await getApplicationDocumentsDirectory(); 
+    final tempDir = await getTemporaryDirectory(); 
+    
+    setState(() { 
+      documentsPath = docDir.path;
+      tempPath = tempDir.path; 
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('JSON Ridho')),
+      appBar: AppBar(title: const Text('Path Provider & JSON Ridho')),
       
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('File System Paths:', style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text('Doc path: $documentsPath'), 
+                  Text('Temp path: $tempPath'), 
+                ],
+              ),
+            ),
+            
             Text('You have opened the app $appCounter times.'), 
 
             myPizzas.isEmpty
@@ -98,7 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
 
             ElevatedButton(
-              onPressed: () { //
+              onPressed: () {
                 deletePreference(); 
               },
               child: const Text('Reset counter'),
@@ -107,23 +158,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-  }
-  
-  Future<List<Pizza>> readJsonFile() async {
-    String myString = 
-        await DefaultAssetBundle.of(context).loadString('assets/pizzalist.json');
-    List pizzaMapList = jsonDecode(myString);
-    List<Pizza> tempPizzas = [];
-    
-    for (var pizza in pizzaMapList) {
-      Pizza myPizza = Pizza.fromJson(pizza);
-      tempPizzas.add(myPizza);
-    }
-    
-    pizzaString = convertToJSON(tempPizzas);
-    print('JSON Result (Serialization):');
-    print(pizzaString);
-    
-    return tempPizzas; 
   }
 }
