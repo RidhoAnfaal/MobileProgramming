@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart'; 
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart'; 
+import 'dart:io'; 
 import 'package:store_data_ridho/model/pizza.dart'; 
 
 void main() {
@@ -32,9 +33,11 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Pizza> myPizzas = []; 
   int appCounter = 0; 
   String pizzaString = ''; 
-
   String documentsPath = ''; 
   String tempPath = ''; 
+
+  late File myFile; 
+  String fileText = ''; 
 
   @override
   void initState() {
@@ -53,6 +56,33 @@ class _MyHomePageState extends State<MyHomePage> {
     await readAndWritePreference(); 
     
     await getPaths(); 
+
+    myFile = File('$documentsPath/praktikum6.txt'); 
+    await writeFile(); 
+  }
+
+  Future<bool> writeFile() async {
+    String content = "Ridho Anfa'al-2341720222";
+    try {
+      await myFile.writeAsString(content); 
+      return true;
+    } catch (e) {
+      print('Error writing file: $e');
+      return false;
+    }
+  }
+
+  Future<void> readFile() async {
+    try {
+      String fileContent = await myFile.readAsString(); 
+      setState(() {
+        fileText = fileContent; 
+      });
+    } catch (e) {
+      setState(() {
+        fileText = 'Error reading file: $e';
+      });
+    }
   }
 
   Future<List<Pizza>> readJsonFile() async {
@@ -67,9 +97,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     
     pizzaString = convertToJSON(tempPizzas);
-    print('JSON Result (Serialization):');
-    print(pizzaString);
-    
     return tempPizzas; 
   }
 
@@ -77,42 +104,40 @@ class _MyHomePageState extends State<MyHomePage> {
     return jsonEncode(pizzas.map((pizza) => pizza.toJson()).toList()); 
   }
 
-  Future<void> readAndWritePreference() async { 
-    SharedPreferences prefs = await SharedPreferences.getInstance(); 
-    
-    appCounter = prefs.getInt('appCounter') ?? 0; 
+  Future<void> readAndWritePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    appCounter = prefs.getInt('appCounter') ?? 0;
     appCounter++; 
-    
     await prefs.setInt('appCounter', appCounter); 
 
     setState(() {
-      appCounter = appCounter; 
+      appCounter = appCounter;
     });
   }
 
   Future<void> deletePreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear(); 
-    
     setState(() {
       appCounter = 0; 
     });
   }
 
-  Future<void> getPaths() async { 
+  Future<void> getPaths() async {
     final docDir = await getApplicationDocumentsDirectory(); 
     final tempDir = await getTemporaryDirectory(); 
     
-    setState(() { 
-      documentsPath = docDir.path;
+    setState(() {
+      documentsPath = docDir.path; 
       tempPath = tempDir.path; 
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Path Provider & JSON Ridho')),
+      appBar: AppBar(title: const Text('Path & File Access Ridho')),
       
       body: Center(
         child: Column(
@@ -131,6 +156,12 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             
+            ElevatedButton(
+              onPressed: readFile, 
+              child: const Text('Read File'), 
+            ),
+            Text(fileText), 
+
             Text('You have opened the app $appCounter times.'), 
 
             myPizzas.isEmpty
@@ -149,9 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
 
             ElevatedButton(
-              onPressed: () {
-                deletePreference(); 
-              },
+              onPressed: deletePreference,
               child: const Text('Reset counter'),
             ),
           ],

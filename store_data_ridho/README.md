@@ -29,5 +29,9 @@ This code improves safety by minimizing runtime errors from JSON key typos, catc
 ![p5-s7](img/p5-s7.png)
 
 ## Lab 6
+### Question 8
+![p6-s8](img/p6-s8.png)
+The writeFile() function is an asynchronous method to save a Full Name and Student ID to a text file in the application's document directory. It is called once during initialization after establishing the document path and creating the file object. The writing process uses await myFile.writeAsString(content); to handle I/O operations and ensure completion before proceeding. A try-catch block manages errors, returning true for a successful write and false if errors occur, with error messages displayed. The content can later be accessed via the ‘Read File’ button, activating the readFile() function.
 
 ## Lab 7
+### Question 9
