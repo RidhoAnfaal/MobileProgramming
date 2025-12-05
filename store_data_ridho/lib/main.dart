@@ -105,12 +105,24 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
 
+      // MARK: - FloatingActionButton untuk Navigasi POST (Sesuai Instruksi)
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const PizzaDetailScreen()),
+            MaterialPageRoute(
+              builder: (context) => PizzaDetailScreen(
+                pizza: Pizza(
+                  id: 0,
+                  pizzaName: '',
+                  description: '',
+                  price: 0,
+                  imageUrl: '',
+                ),
+                isNew: true,
+              ),
+            ),
           );
         },
       ),
