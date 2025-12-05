@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:store_data_ridho/model/pizza.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'httphelper.dart';
+import 'pizza_detail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -80,7 +81,9 @@ class _MyHomePageState extends State<MyHomePage> {
         future: callPizzas(),
         builder: (BuildContext context, AsyncSnapshot<List<Pizza>> snapshot) {
           if (snapshot.hasError) {
-            return const Center(child: Text('Something went wrong'));
+            return Center(
+              child: Text('Something went wrong: ${snapshot.error}'),
+            );
           }
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
@@ -98,6 +101,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               );
             },
+          );
+        },
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const PizzaDetailScreen()),
           );
         },
       ),

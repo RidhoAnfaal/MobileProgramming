@@ -40,7 +40,12 @@ The writeFile() function is an asynchronous method to save a Full Name and Stude
 
 ##
 
-# Codelab 13
+# Codelab 14
 
 ## Lab 1
 ### Question 1
+![p1-s1](img/codelab14/p1-s1.png)
+
+## Lab 2
+### Question 2
+![p1-s1](img/codelab14/p1-s2.gif)
