@@ -19,7 +19,9 @@ class HttpHelper {
 
     if (result.statusCode == HttpStatus.ok) {
       final jsonResponse = json.decode(result.body);
-      List<Pizza> pizzas = jsonResponse.map<Pizza>((i) => Pizza.fromJson(i)).toList();
+      List<Pizza> pizzas = jsonResponse
+          .map<Pizza>((i) => Pizza.fromJson(i))
+          .toList();
       return pizzas;
     } else {
       return Future.error('Error');
@@ -44,10 +46,14 @@ class HttpHelper {
     String put = json.encode(pizza.toJson());
     Uri url = Uri.https(authority, putPath);
 
-    http.Response r = await http.put(
-      url,
-      body: put,
-    );
+    http.Response r = await http.put(url, body: put);
+    return r.body;
+  }
+
+  Future<String> deletePizza(int id) async {
+    const deletePath = '/pizza';
+    Uri url = Uri.https(authority, deletePath);
+    http.Response r = await http.delete(url);
     return r.body;
   }
 }

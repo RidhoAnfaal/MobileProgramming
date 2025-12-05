@@ -56,22 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return pizzas;
   }
 
-  Future<void> _loadAllData() async {}
-  Future<void> writeToSecureStorage() async {}
-  Future<void> readFromSecureStorage() async {}
-  Future<List<Pizza>> readJsonFile() async {
-    return [];
-  }
-
-  Future<void> readAndWritePreference() async {}
-  Future<void> deletePreference() async {}
-  Future<void> getPaths() async {}
-  Future<bool> writeFile() async {
-    return true;
-  }
-
-  Future<void> readFile() async {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,19 +69,41 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('Something went wrong: ${snapshot.error}'),
             );
           }
+
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
 
           return ListView.builder(
-            itemCount: (snapshot.data == null) ? 0 : snapshot.data!.length,
+            itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int position) {
-              return ListTile(
-                title: Text(snapshot.data![position].pizzaName),
-                subtitle: Text(
-                  snapshot.data![position].description +
-                      ' - € ' +
-                      snapshot.data![position].price.toString(),
+              final pizza = snapshot.data![position];
+
+              return Dismissible(
+                key: Key(position.toString()),
+                onDismissed: (item) {
+                  HttpHelper helper = HttpHelper();
+                  helper.deletePizza(pizza.id!);
+                  setState(() {
+                    snapshot.data!.removeAt(position);
+                  });
+                },
+                child: ListTile(
+                  title: Text(pizza.pizzaName),
+                  subtitle: Text(
+                    '${pizza.description} - € ${pizza.price.toString()}',
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PizzaDetailScreen(
+                          pizza: pizza,
+                          isNew: false,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               );
             },
@@ -105,7 +111,6 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
 
-      // MARK: - FloatingActionButton untuk Navigasi POST (Sesuai Instruksi)
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {

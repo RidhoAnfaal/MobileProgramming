@@ -6,7 +6,11 @@ class PizzaDetailScreen extends StatefulWidget {
   final Pizza pizza;
   final bool isNew;
 
-  const PizzaDetailScreen({super.key, required this.pizza, required this.isNew});
+  const PizzaDetailScreen({
+    super.key,
+    required this.pizza,
+    required this.isNew,
+  });
 
   @override
   State<PizzaDetailScreen> createState() => _PizzaDetailScreenState();
@@ -65,7 +69,6 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
 
   Future executePutOnly() async {
     HttpHelper helper = HttpHelper();
-
     final int? id = int.tryParse(txtId.text);
     final double? price = double.tryParse(txtPrice.text);
 
@@ -84,6 +87,15 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
     });
   }
 
+  Future executeDelete() async {
+    HttpHelper helper = HttpHelper();
+    final int? id = int.tryParse(txtId.text);
+    final result = await helper.deletePizza(id ?? 0);
+    setState(() {
+      operationResult = result;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,17 +105,48 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text(operationResult, style: TextStyle(backgroundColor: Colors.green[200], color: Colors.black)),
+              Text(
+                operationResult,
+                style: TextStyle(
+                  backgroundColor: Colors.green[200],
+                  color: Colors.black,
+                ),
+              ),
               const SizedBox(height: 24),
-              TextField(controller: txtId, decoration: const InputDecoration(hintText: 'Insert ID (Number)'), keyboardType: TextInputType.number),
+              TextField(
+                controller: txtId,
+                decoration: const InputDecoration(
+                  hintText: 'Insert ID (Number)',
+                ),
+                keyboardType: TextInputType.number,
+              ),
               const SizedBox(height: 24),
-              TextField(controller: txtName, decoration: const InputDecoration(hintText: 'Insert Pizza Name')),
+              TextField(
+                controller: txtName,
+                decoration: const InputDecoration(
+                  hintText: 'Insert Pizza Name',
+                ),
+              ),
               const SizedBox(height: 24),
-              TextField(controller: txtDescription, decoration: const InputDecoration(hintText: 'Insert Description')),
+              TextField(
+                controller: txtDescription,
+                decoration: const InputDecoration(
+                  hintText: 'Insert Description',
+                ),
+              ),
               const SizedBox(height: 24),
-              TextField(controller: txtPrice, decoration: const InputDecoration(hintText: 'Insert Price (Number)'), keyboardType: TextInputType.number),
+              TextField(
+                controller: txtPrice,
+                decoration: const InputDecoration(
+                  hintText: 'Insert Price (Number)',
+                ),
+                keyboardType: TextInputType.number,
+              ),
               const SizedBox(height: 24),
-              TextField(controller: txtImageUrl, decoration: const InputDecoration(hintText: 'Insert Image Url')),
+              TextField(
+                controller: txtImageUrl,
+                decoration: const InputDecoration(hintText: 'Insert Image Url'),
+              ),
               const SizedBox(height: 48),
 
               ElevatedButton(
@@ -121,7 +164,15 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
 
               ElevatedButton(
                 onPressed: executePutOnly,
-                child: const Text('PUT'),
+                child: const Text('PUT (Manual Button)'),
+              ),
+
+              const SizedBox(height: 16),
+
+              ElevatedButton(
+                onPressed: executeDelete,
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                child: const Text('DELETE'),
               ),
             ],
           ),

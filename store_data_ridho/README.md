@@ -54,3 +54,8 @@ The writeFile() function is an asynchronous method to save a Full Name and Stude
 ### Question 3
 ![p3-s3](img/codelab14/p3-s3.gif)
 ![p3-s3](img/codelab14/put.png)
+
+## Lab 4
+### Question 4
+![p3-s3](img/codelab14/p3-s3.gif)
+![p3-s3](img/codelab14/put.png)
