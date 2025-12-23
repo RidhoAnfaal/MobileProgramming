@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Future Demo',
+      title: 'Ridho',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -32,40 +32,25 @@ class FuturePage extends StatefulWidget {
 
 class _FuturePageState extends State<FuturePage> {
   String result = '';
+  late Completer completer;
 
-  // --- Methods from Practical 1 ---
-  Future<Response> getData() async {
-    const authority = 'www.googleapis.com';
-    const path = '/books/v1/volumes/junbDwaAQBAJ';
-    Uri url = Uri.https(authority, path);
-    return http.get(url);
+  // --- Lab 3 Methods ---
+
+  Future getNumber() {
+    completer = Completer<int>();
+    calculate();
+    return completer.future;
   }
 
-  // --- Step 1: Methods for Practical 2 ---
-  Future<int> returnOneAsync() async {
-    await Future.delayed(const Duration(seconds: 3));
-    return 1;
-  }
-
-  Future<int> returnTwoAsync() async {
-    await Future.delayed(const Duration(seconds: 3));
-    return 2;
-  }
-
-  Future<int> returnThreeAsync() async {
-    await Future.delayed(const Duration(seconds: 3));
-    return 3;
-  }
-
-  // --- Step 2: Add method count() ---
-  Future count() async {
-    int total = 0;
-    total = await returnOneAsync();
-    total += await returnTwoAsync();
-    total += await returnThreeAsync();
-    setState(() {
-      result = total.toString();
-    });
+  // Step 5: Updated calculate method with try-catch
+  Future calculate() async {
+    try {
+      await Future.delayed(const Duration(seconds: 5));
+      completer.complete(42);
+      // throw Exception(); // Uncomment this to test the catch block
+    } catch (_) {
+      completer.completeError({});
+    }
   }
 
   @override
@@ -81,18 +66,16 @@ class _FuturePageState extends State<FuturePage> {
             ElevatedButton(
               child: const Text('GO!'),
               onPressed: () {
-                // --- Step 3: Call count() and comment out previous code ---
-                /* setState(() {});
-                getData().then((value) {
-                  result = value.body.toString().substring(0, 450);
-                  setState(() {});
-                }).catchError((_) {
-                  result = 'An error occurred';
-                  setState(() {});
-                }); 
-                */
-                
-                count(); // Calling the new count method
+                // Step 6: Updated onPressed with catchError
+                getNumber().then((value) {
+                  setState(() {
+                    result = value.toString();
+                  });
+                }).catchError((e) {
+                  setState(() {
+                    result = 'An error occurred';
+                  });
+                });
               },
             ),
             const Spacer(),
