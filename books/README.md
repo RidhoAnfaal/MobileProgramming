@@ -81,10 +81,22 @@ Step 1 requires manual instantiation of a FutureGroup object and relies on the a
 ### Question 10
 Call handleError()the method in ElevatedButton, then run it. What is the result? Explain the difference between the code in steps 1 and 4!
 
-![p5-s9](img/p5-s10.gif)
+![p5-s10](img/p5-s10.gif)
 
 ##
 
 ## Lab 6
 ### Question 11
+![p6-s11](img/p6-s11.png)
 
+##
+
+### Question 12
+![p6-s12](img/p6-s12.gif)
+
+Do you get GPS coordinates when running in a browser? Why is that?
+
+Yes, GPS coordinates can be obtained in a web browser through the HTML5 Geolocation API. Browsers determine location using a mix of IP address, nearby Wi-Fi, and Bluetooth data, rather than relying solely on a GPS chip. User permission is required to access this data, if the user denies it or if the site is not secure (HTTPS), coordinates cannot be retrieved.
+
+## Lab 7
+### Question 13

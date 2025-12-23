@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:async/async.dart';
+import 'geolocation.dart'; 
 
 void main() {
   runApp(const MyApp());
@@ -14,9 +15,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ridho',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const FuturePage(),
+      title: 'Ridho', 
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        useMaterial3: false, 
+      ),
+      home: const LocationScreen(), 
     );
   }
 }
@@ -31,13 +35,11 @@ class FuturePage extends StatefulWidget {
 class _FuturePageState extends State<FuturePage> {
   String result = '';
 
-  // Step 1: The method that produces the error
   Future returnError() async {
     await Future.delayed(const Duration(seconds: 2));
     throw Exception('Something terrible happened!');
   }
 
-  // Step 4: The method that handles the error
   Future handleError() async {
     try {
       await returnError();
@@ -53,7 +55,7 @@ class _FuturePageState extends State<FuturePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Back from the Future')),
+      appBar: AppBar(title: const Text('Back from the Future - Ridho')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +63,6 @@ class _FuturePageState extends State<FuturePage> {
             ElevatedButton(
               child: const Text('GO!'),
               onPressed: () {
-                // Calling handleError() as requested
                 handleError();
               },
             ),
