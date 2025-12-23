@@ -132,3 +132,6 @@ Add your nickname to each property titleas your job identity.
 
 ##
 
+## Lab 9
+### Question 17
+![p9-s17](img/p9-s17.gif)

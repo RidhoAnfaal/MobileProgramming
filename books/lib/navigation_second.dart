@@ -10,7 +10,7 @@ class NavigationSecond extends StatefulWidget {
 class _NavigationSecondState extends State<NavigationSecond> {
   @override
   Widget build(BuildContext context) {
-    Color color; // Local variable to hold the selection
+    Color color; 
     
     return Scaffold(
       appBar: AppBar(

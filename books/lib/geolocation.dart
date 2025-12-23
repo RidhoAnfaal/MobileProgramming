@@ -14,7 +14,6 @@ class _LocationScreenState extends State<LocationScreen> {
   @override
   void initState() {
     super.initState();
-    // The Future is initialized once here
     position = getPosition();
   }
 
@@ -29,7 +28,6 @@ class _LocationScreenState extends State<LocationScreen> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
             } 
-            // Step 5: Enhanced error handling logic
             else if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasError) {
                  return const Text('Something terrible happened!');
@@ -46,7 +44,6 @@ class _LocationScreenState extends State<LocationScreen> {
   }
 
   Future<Position> getPosition() async {
-    // Logic from Step 1
     await Geolocator.isLocationServiceEnabled();
     await Future.delayed(const Duration(seconds: 3));
     Position position = await Geolocator.getCurrentPosition();

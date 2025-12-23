@@ -29,7 +29,6 @@ class _NavigationFirstState extends State<NavigationFirst> {
     );
   }
 
-  // Step 3: The Future function that waits for the navigation result
   Future _navigateAndGetColor(BuildContext context) async {
     color = await Navigator.push(
           context,
@@ -38,7 +37,6 @@ class _NavigationFirstState extends State<NavigationFirst> {
         Colors.blue;
 
     setState(() {
-      // This triggers a rebuild of the Scaffold with the new background color
     });
   }
 }
