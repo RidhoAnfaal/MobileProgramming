@@ -119,5 +119,16 @@ No visible difference appears in the UI when the code runs successfully because,
 
 ##
 
-## Lab 7
-### Question 13
+## Lab 8
+### Question 15
+Add your nickname to each property titleas your job identity.
+
+![p8-s15](img/p8-s15.png)
+
+##
+
+### Question 16
+![p8-s16](img/p8-s16.gif)
+
+##
+
