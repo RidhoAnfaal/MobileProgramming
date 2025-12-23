@@ -15,10 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ridho',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: const FuturePage(),
     );
   }
@@ -34,61 +31,42 @@ class FuturePage extends StatefulWidget {
 class _FuturePageState extends State<FuturePage> {
   String result = '';
 
-  Future<int> returnOneAsync() async {
-    await Future.delayed(const Duration(seconds: 3));
-    return 1;
+  // Step 1: The method that produces the error
+  Future returnError() async {
+    await Future.delayed(const Duration(seconds: 2));
+    throw Exception('Something terrible happened!');
   }
 
-  Future<int> returnTwoAsync() async {
-    await Future.delayed(const Duration(seconds: 3));
-    return 2;
-  }
-
-  Future<int> returnThreeAsync() async {
-    await Future.delayed(const Duration(seconds: 3));
-    return 3;
-  }
-
-  // --- Step 4 Implementation ---
-  void returnFG() {
-    final futures = Future.wait<int>([
-      returnOneAsync(),
-      returnTwoAsync(),
-      returnThreeAsync(),
-    ]);
-
-    futures.then((List<int> value) {
-      int total = 0;
-      for (var element in value) {
-        total += element;
-      }
+  // Step 4: The method that handles the error
+  Future handleError() async {
+    try {
+      await returnError();
+    } catch (error) {
       setState(() {
-        result = total.toString();
+        result = error.toString();
       });
-    });
+    } finally {
+      print('Complete');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Back from the Future'),
-      ),
+      appBar: AppBar(title: const Text('Back from the Future')),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Spacer(),
             ElevatedButton(
               child: const Text('GO!'),
               onPressed: () {
-                returnFG();
+                // Calling handleError() as requested
+                handleError();
               },
             ),
-            const Spacer(),
+            const SizedBox(height: 20),
             Text(result),
-            const Spacer(),
-            const CircularProgressIndicator(),
-            const Spacer(),
           ],
         ),
       ),

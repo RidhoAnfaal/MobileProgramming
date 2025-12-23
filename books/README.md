@@ -65,5 +65,26 @@ Capture your lab results as a GIF and attach it to the README. Then, commit the 
 ### Question 7
 ![p4-s7](img/p4-s7.gif)
 
+##
+
 ### Question 8
 Step 1 requires manual instantiation of a FutureGroup object and relies on the async package and multiple verbose method calls. In contrast, Step 4 streamlines the process by using the native Future.wait method, which allows a list of asynchronous operations to be passed to a single constructor, removing boilerplate code. Both methods enable parallel execution, yet Step 4 is more idiomatic in Dart, offering a cleaner way to synchronize multiple futures without extra dependencies.
+
+##
+
+## Lab 5
+### Question 9
+![p5-s9](img/p5-s9.gif)
+
+##
+
+### Question 10
+Call handleError()the method in ElevatedButton, then run it. What is the result? Explain the difference between the code in steps 1 and 4!
+
+![p5-s9](img/p5-s10.gif)
+
+##
+
+## Lab 6
+### Question 11
+
