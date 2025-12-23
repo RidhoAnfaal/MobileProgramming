@@ -9,43 +9,47 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  String myPosition = '';
+  Future<Position>? position;
 
   @override
   void initState() {
     super.initState();
-    // Step 5: Initialize the position fetch on screen load
-    getPosition().then((Position myPos) {
-      myPosition =
-          'Latitude: ${myPos.latitude.toString()} - Longitude: ${myPos.longitude.toString()}';
-      setState(() {
-        myPosition = myPosition;
-      });
-    });
+    // The Future is initialized once here
+    position = getPosition();
   }
 
   @override
   Widget build(BuildContext context) {
-    // Step 8: Define a widget based on the current state
-    final myWidget = myPosition == ''
-        ? const CircularProgressIndicator()
-        : Text(myPosition);
-
     return Scaffold(
       appBar: AppBar(title: const Text('Ridho Current Location')),
       body: Center(
-        child: myWidget, // Display the loading indicator or the text
+        child: FutureBuilder<Position>(
+          future: position,
+          builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            } 
+            // Step 5: Enhanced error handling logic
+            else if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasError) {
+                 return const Text('Something terrible happened!');
+              }
+              return Text(snapshot.data.toString());
+            } 
+            else {
+              return const Text('');
+            }
+          },
+        ),
       ),
     );
   }
 
   Future<Position> getPosition() async {
-    // Question 12: Manually add a delay to see the loading animation
-    await Future.delayed(const Duration(seconds: 3));
-    
-    await Geolocator.requestPermission();
+    // Logic from Step 1
     await Geolocator.isLocationServiceEnabled();
-    Position? position = await Geolocator.getCurrentPosition();
+    await Future.delayed(const Duration(seconds: 3));
+    Position position = await Geolocator.getCurrentPosition();
     return position;
   }
 }

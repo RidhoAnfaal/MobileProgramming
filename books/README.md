@@ -98,5 +98,26 @@ Do you get GPS coordinates when running in a browser? Why is that?
 
 Yes, GPS coordinates can be obtained in a web browser through the HTML5 Geolocation API. Browsers determine location using a mix of IP address, nearby Wi-Fi, and Bluetooth data, rather than relying solely on a GPS chip. User permission is required to access this data, if the user denies it or if the site is not secure (HTTPS), coordinates cannot be retrieved.
 
+##
+
+## Lab 7
+### Question 13
+Is there a difference between the UI and the previous practicum? Why is that?
+
+No, there is no visible difference in the user interface (UI) for the end-user. In both versions, the screen displays a CircularProgressIndicator during the loading phase and then transitions to displaying the GPS coordinates as text.
+
+![p7-s13](img/p7-s13.gif)
+
+##
+
+### Question 14
+Is there any difference in the UI compared to the previous step? Why is that?
+
+No visible difference appears in the UI when the code runs successfully because, under typical conditions, the code executes the success path with snapshot.hasError as false, returning the same Text(snapshot.data.toString()) widget.
+
+![p7-s14](img/p7-s14.gif)
+
+##
+
 ## Lab 7
 ### Question 13
