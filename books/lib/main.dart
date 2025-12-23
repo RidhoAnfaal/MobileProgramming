@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:async/async.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,25 +33,39 @@ class FuturePage extends StatefulWidget {
 
 class _FuturePageState extends State<FuturePage> {
   String result = '';
-  late Completer completer;
 
-  // --- Lab 3 Methods ---
-
-  Future getNumber() {
-    completer = Completer<int>();
-    calculate();
-    return completer.future;
+  Future<int> returnOneAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 1;
   }
 
-  // Step 5: Updated calculate method with try-catch
-  Future calculate() async {
-    try {
-      await Future.delayed(const Duration(seconds: 5));
-      completer.complete(42);
-      // throw Exception(); // Uncomment this to test the catch block
-    } catch (_) {
-      completer.completeError({});
-    }
+  Future<int> returnTwoAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 2;
+  }
+
+  Future<int> returnThreeAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 3;
+  }
+
+  // --- Step 4 Implementation ---
+  void returnFG() {
+    final futures = Future.wait<int>([
+      returnOneAsync(),
+      returnTwoAsync(),
+      returnThreeAsync(),
+    ]);
+
+    futures.then((List<int> value) {
+      int total = 0;
+      for (var element in value) {
+        total += element;
+      }
+      setState(() {
+        result = total.toString();
+      });
+    });
   }
 
   @override
@@ -66,16 +81,7 @@ class _FuturePageState extends State<FuturePage> {
             ElevatedButton(
               child: const Text('GO!'),
               onPressed: () {
-                // Step 6: Updated onPressed with catchError
-                getNumber().then((value) {
-                  setState(() {
-                    result = value.toString();
-                  });
-                }).catchError((e) {
-                  setState(() {
-                    result = 'An error occurred';
-                  });
-                });
+                returnFG();
               },
             ),
             const Spacer(),
