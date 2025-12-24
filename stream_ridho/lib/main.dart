@@ -43,7 +43,6 @@ class _StreamHomePageState extends State<StreamHomePage> {
     numberStream = NumberStream();
     numberStreamController = numberStream.controller;
 
-    // Step 4: Set broadcast stream
     Stream stream = numberStreamController.stream.asBroadcastStream();
 
     subscription = stream.listen((event) {
@@ -84,7 +83,6 @@ class _StreamHomePageState extends State<StreamHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Step 5: Updated display for multiple values
             Text(
               values,
               textAlign: TextAlign.center,

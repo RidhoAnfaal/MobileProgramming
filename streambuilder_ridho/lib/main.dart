@@ -29,17 +29,14 @@ class StreamHomePage extends StatefulWidget {
 }
 
 class _StreamHomePageState extends State<StreamHomePage> {
-  // Step 5: Declare the stream variable
   late Stream<int> numberStream;
 
-  // Step 6: Initialize the stream
   @override
   void initState() {
     super.initState();
     numberStream = NumberStream().getNumbers();
   }
 
-  // Step 7: Build the UI using StreamBuilder
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,19 +48,16 @@ class _StreamHomePageState extends State<StreamHomePage> {
           stream: numberStream,
           initialData: 0,
           builder: (context, snapshot) {
-            // Check for errors in the stream
             if (snapshot.hasError) {
               return const Text('Error!');
             }
             
-            // Check the connection state and handle data
             if (snapshot.hasData) {
               return Text(
                 snapshot.data.toString(),
                 style: const TextStyle(fontSize: 96),
               );
             } else {
-              // Shown if there is no data and no error
               return const SizedBox.shrink();
             }
           },
