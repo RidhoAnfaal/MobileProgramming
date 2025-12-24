@@ -96,3 +96,18 @@ When a button is clicked, a single integer (e.g., 5) is sent to a Broadcast Stre
 
 ## Lab 6
 ### Question 12
+Explain the meaning of the code in steps 3 and 7!
+
+In Step 3, the async* generator employs Stream.periodic to yield a steady stream of data every second. Step 7 features StreamBuilder, which subscribes to the stream, manages its lifecycle and automatically cleans up, using an AsyncSnapshot to rebuild the UI reactively when new data is received. This approach removes the need for manual state management, ensuring the interface remains in sync with the data source.
+
+![p4-s9](img/p6-s12.gif)
+
+##
+
+## Lab 7
+### Question 13
+Explain the purpose of this practicum! Where does the BLoC pattern concept lie?
+
+The practicum focuses on mastering professional state management by isolating business logic from the user interface through the use of a dedicated RandomNumberBloc class. This approach fosters a modular architecture that enhances testing, maintenance, and scalability, ensuring the UI remains solely responsible for rendering, while the logic is kept pure and independent of the Flutter framework. The BLoC pattern serves as an intermediary layer in the application, facilitating user input through Sinks and broadcasting resulting States back to the UI via Streams, allowing for a reactive loop without relying on setState().
+
+![p4-s9](img/p7-s13.gif)
