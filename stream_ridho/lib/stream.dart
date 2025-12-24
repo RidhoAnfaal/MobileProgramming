@@ -1,4 +1,25 @@
 import 'package:flutter/material.dart';
+import 'dart:async'; // Required for StreamController
+
+class NumberStream {
+  // Controller to manage the stream of integers
+  final StreamController<int> controller = StreamController<int>();
+
+  // Input: Push a successful number into the stream
+  void addNumberToSink(int newNumber) {
+    controller.sink.add(newNumber);
+  }
+
+  // Input: Push an error into the stream
+  void addError() {
+    controller.sink.addError('error');
+  }
+
+  // Cleanup: Close the stream to prevent memory leaks
+  void close() {
+    controller.close();
+  }
+}
 
 class ColorStream {
   final List<Color> colors = [
@@ -14,11 +35,11 @@ class ColorStream {
     Colors.cyan,
   ];
 
-  // Step 5: Defined as an async generator using async*
+  // Async generator that yields colors every second
   Stream<Color> getColors() async* {
-    // Step 6: Using yield* to delegate to a periodic stream
     yield* Stream.periodic(
-      const Duration(seconds: 1), (int t) {
+      const Duration(seconds: 1), 
+      (int t) {
         int index = t % colors.length;
         return colors[index];
       },

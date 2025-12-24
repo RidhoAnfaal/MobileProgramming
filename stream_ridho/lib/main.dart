@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'stream.dart'; // Step 7: Import stream.dart
+import 'stream.dart';
+import 'dart:async';
+import 'dart:math';
 
 void main() {
   runApp(const MyApp());
@@ -11,9 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Stream - Ridho', // Question 1: Identity Branding
+      title: 'Stream - Ridho',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple, // Question 1: Custom Theme
+        primarySwatch: Colors.deepPurple,
       ),
       home: const StreamHomePage(),
     );
@@ -28,36 +30,73 @@ class StreamHomePage extends StatefulWidget {
 }
 
 class _StreamHomePageState extends State<StreamHomePage> {
-  // Step 8: Add variables
-  Color bgColor = Colors.blueGrey;
-  late ColorStream colorStream;
+  late StreamController numberStreamController;
+  late NumberStream numberStream;
+  
+  late StreamSubscription subscription;
+  late StreamSubscription subscription2;
+  String values = '';
 
-  // Step 13: New implementation of changeColor using await for
-  void changeColor() async {
-    await for (var eventColor in colorStream.getColors()) {
-      setState(() {
-        bgColor = eventColor;
-      });
-    }
-  }
-
-  // Step 10: Initialize colorStream and call changeColor
   @override
   void initState() {
     super.initState();
-    colorStream = ColorStream();
-    changeColor();
+    numberStream = NumberStream();
+    numberStreamController = numberStream.controller;
+
+    // Step 4: Set broadcast stream
+    Stream stream = numberStreamController.stream.asBroadcastStream();
+
+    subscription = stream.listen((event) {
+      setState(() {
+        values += '$event - ';
+      });
+    });
+
+    subscription2 = stream.listen((event) {
+      setState(() {
+        values += '$event - ';
+      });
+    });
   }
 
-  // Step 11: Scaffold implementation
+  void addRandomNumber() {
+    Random random = Random();
+    int myNum = random.nextInt(10);
+    if (!numberStreamController.isClosed) {
+      numberStream.addNumberToSink(myNum);
+    }
+  }
+
+  @override
+  void dispose() {
+    subscription.cancel();
+    subscription2.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Stream - Ridho'),
       ),
-      body: Container(
-        decoration: BoxDecoration(color: bgColor),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Step 5: Updated display for multiple values
+            Text(
+              values,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 24),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: addRandomNumber,
+              child: const Text('New Random Number'),
+            ),
+          ],
+        ),
       ),
     );
   }
