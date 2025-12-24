@@ -91,3 +91,8 @@ Explain why this could happen?
 When a button is clicked, a single integer (e.g., 5) is sent to a Broadcast Stream, which uses .asBroadcastStream() to allow multiple independent listeners to receive the same value simultaneously. Each subscription adds the received integer to a values string, leading to a situation where the UI reflects the number as generated twice (e.g., 5 - 5 -) due to each listener updating the state independently.
 
 ![p4-s9](img/p5-s11.gif)
+
+##
+
+## Lab 6
+### Question 12
